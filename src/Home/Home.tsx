@@ -1,9 +1,13 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styles from './home.module.scss'
 import { ServicesList } from '../ServiceList/ServiceList'
-import { CategoryList } from '../types'
+import { CategoryList, Settings } from '../types'
+import { Summary } from '../Summary/Summary'
 
 export function Home() {
+  const settings: Settings = {
+    pointPrice: 20,
+  }
   const data: CategoryList = [
     {
       'first category': [
@@ -74,10 +78,12 @@ export function Home() {
       ],
     },
   ]
+  const [list, setList] = useState(data)
+  const pointsCount = 200
   return (
     <div className={styles.container}>
       {React.Children.toArray(
-        data.map((category) => {
+        list.map((category) => {
           const categoryName = Object.keys(category)[0]
           return (
             <ServicesList
@@ -87,6 +93,7 @@ export function Home() {
           )
         })
       )}
+      <Summary settings={settings} pointsCount={pointsCount} />
     </div>
   )
 }

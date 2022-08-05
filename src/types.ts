@@ -18,3 +18,7 @@ export type HandleServiceChange = (
   name: string,
   value: string | number | boolean
 ) => void
+
+export type Settings = {
+  pointPrice: number
+}
