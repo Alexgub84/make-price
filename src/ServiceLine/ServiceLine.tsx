@@ -2,8 +2,9 @@ import React, { useState } from 'react'
 import { Service, HandleServiceChange } from '../types'
 
 export const ServiceLine: React.FC<{
-  props: { service: Service; handleServiceChange: HandleServiceChange }
-}> = ({ props }) => {
+  service: Service
+  handleServiceChange: HandleServiceChange
+}> = (props) => {
   return (
     <div>
       <label>{props.service.title}</label>

@@ -4,8 +4,9 @@ import { ServiceLine } from '../ServiceLine/ServiceLine'
 import { HandleServiceChange, Category, ServiceList } from '../types'
 
 export const ServicesList: React.FC<{
-  props: { categoryName: string; serviceList: ServiceList }
-}> = ({ props }) => {
+  categoryName: string
+  serviceList: ServiceList
+}> = (props) => {
   const [serviceList, setServiceList] = useState(props.serviceList)
   const handleServiceChange: HandleServiceChange = (id, name, value) => {
     const updatedData = serviceList.map((row) => {
