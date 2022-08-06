@@ -19,6 +19,8 @@ export type HandleServiceChange = (
   value: string | number | boolean
 ) => void
 
+export type handleListChange = (name: string, newlist: ServiceList) => void
+
 export type Settings = {
   pointPrice: number
 }

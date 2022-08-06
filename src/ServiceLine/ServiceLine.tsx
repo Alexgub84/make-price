@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import styles from './serviceLine.module.scss'
 import { Service, HandleServiceChange } from '../types'
 
 export const ServiceLine: React.FC<{
@@ -6,7 +7,7 @@ export const ServiceLine: React.FC<{
   handleServiceChange: HandleServiceChange
 }> = (props) => {
   return (
-    <div>
+    <div className={styles.container}>
       <label>{props.service.title}</label>
       <input
         type="checkbox"
@@ -25,7 +26,7 @@ export const ServiceLine: React.FC<{
         type="number"
         value={props.service.points}
         name="points"
-        id=""
+        className={styles.pointsInput}
         onChange={(e) =>
           props.handleServiceChange(
             props.service.id,
