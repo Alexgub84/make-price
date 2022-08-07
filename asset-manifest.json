@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/make-price/static/css/main.014250bc.css",
+    "main.js": "/make-price/static/js/main.8d91ab95.js",
+    "static/js/787.be4856a7.chunk.js": "/make-price/static/js/787.be4856a7.chunk.js",
+    "index.html": "/make-price/index.html",
+    "main.014250bc.css.map": "/make-price/static/css/main.014250bc.css.map",
+    "main.8d91ab95.js.map": "/make-price/static/js/main.8d91ab95.js.map",
+    "787.be4856a7.chunk.js.map": "/make-price/static/js/787.be4856a7.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.014250bc.css",
+    "static/js/main.8d91ab95.js"
+  ]
+}
