@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import styles from './home.module.scss'
 import { ServicesList } from '../ServiceList/ServiceList'
-import { CategoryList, Settings, handleListChange } from '../types'
+import { Service, ServiceList, Settings, HandleServiceChange } from '../types'
 import { Summary } from '../Summary/Summary'
 import { categoryList } from '../data/category-list'
 
@@ -11,32 +11,46 @@ export function Home() {
   }
 
   const [list, setList] = useState(categoryList)
-  const handleListChange: handleListChange = (categoryName, newlist) => {
+
+  const handleServiceChange: HandleServiceChange = (updatedService): void => {
     const updatedList = list.map((category) => {
-      if (Object.keys(category).includes(categoryName)) {
-        return { [categoryName]: newlist }
+      const updatedServiceList = updateServiceList(
+        category.list,
+        updatedService
+      )
+      return { name: category.name, list: updatedServiceList }
+    })
+    setList(updatedList)
+  }
+
+  const updateServiceList = (
+    list: ServiceList,
+    updatedService: Service
+  ): ServiceList => {
+    const updatedList = list.map((service) => {
+      if (service.id === updatedService.id) {
+        return updatedService
       } else {
-        return category
+        return service
       }
     })
 
-    setList(updatedList)
+    return updatedList
   }
-  const pointsCount = 200
   return (
     <div className={styles.container}>
       {React.Children.toArray(
         list.map((category) => {
-          const categoryName = Object.keys(category)[0]
           return (
             <ServicesList
-              categoryName={categoryName}
-              serviceList={category[categoryName]}
-              handleListChange={handleListChange}
+              categoryName={category.name}
+              serviceList={category.list}
+              handleServiceChange={handleServiceChange}
             />
           )
         })
       )}
+
       <Summary settings={settings} list={list} />
     </div>
   )

@@ -5,37 +5,45 @@ import {
   HandleServiceChange,
   Category,
   ServiceList,
-  handleListChange,
+  HandleListChange,
 } from '../types'
 
 export const ServicesList: React.FC<{
   categoryName: string
   serviceList: ServiceList
-  handleListChange: handleListChange
+  handleServiceChange: HandleServiceChange
 }> = (props) => {
   const [serviceList, setServiceList] = useState(props.serviceList)
-  const handleServiceChange: HandleServiceChange = (id, name, value) => {
-    const updatedData = serviceList.map((row) => {
-      if (row.id === id) {
-        return { ...row, [name]: value }
-      } else {
-        return row
-      }
-    })
-    setServiceList(updatedData)
-    props.handleListChange(props.categoryName, updatedData)
-  }
+  // const handleServiceChange: HandleServiceChange = (id, name, newValue) => {
+  //   console.log('start update: ', name, newValue)
+  //   //todo bug
+  //   const updatedList = serviceList.map((row) => {
+  //     if (row.id === id) {
+  //       console.log({ ...row, [name]: newValue })
+
+  //       return { ...row, [name]: newValue }
+  //     } else {
+  //       return row
+  //     }
+  //   })
+
+  //   props.handleListChange(props.categoryName, updatedList)
+  //   setServiceList(updatedList)
+  //   console.log(serviceList)
+
+  //   console.log('end update: ', name)
+  // }
   return (
     <div className={styles.container}>
       <h2>{props.categoryName}</h2>
       <div className={styles.listContainer}>
         {React.Children.toArray(
-          serviceList.map((service) => {
+          props.serviceList.map((service) => {
             return (
               <div>
                 <ServiceLine
                   service={service}
-                  handleServiceChange={handleServiceChange}
+                  handleServiceChange={props.handleServiceChange}
                 />
               </div>
             )

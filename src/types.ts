@@ -8,18 +8,20 @@ export type Service = {
 export type ServiceList = Service[]
 
 export type Category = {
-  [name: string]: ServiceList
+  name: string
+  list: ServiceList
 }
 
 export type CategoryList = Category[]
 
 export type HandleServiceChange = (
-  id: string,
-  name: string,
-  value: string | number | boolean
+  updatedService: Service
+  // id: string,
+  // keyName: string,
+  // newValue: string | number | boolean
 ) => void
 
-export type handleListChange = (name: string, newlist: ServiceList) => void
+export type HandleListChange = (name: string, newlist: ServiceList) => void
 
 export type Settings = {
   pointPrice: number
