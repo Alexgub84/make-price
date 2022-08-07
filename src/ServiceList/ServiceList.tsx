@@ -13,44 +13,28 @@ export const ServicesList: React.FC<{
   serviceList: ServiceList
   handleServiceChange: HandleServiceChange
 }> = (props) => {
-  const [serviceList, setServiceList] = useState(props.serviceList)
-  // const handleServiceChange: HandleServiceChange = (id, name, newValue) => {
-  //   console.log('start update: ', name, newValue)
-  //   //todo bug
-  //   const updatedList = serviceList.map((row) => {
-  //     if (row.id === id) {
-  //       console.log({ ...row, [name]: newValue })
-
-  //       return { ...row, [name]: newValue }
-  //     } else {
-  //       return row
-  //     }
-  //   })
-
-  //   props.handleListChange(props.categoryName, updatedList)
-  //   setServiceList(updatedList)
-  //   console.log(serviceList)
-
-  //   console.log('end update: ', name)
-  // }
+  const [showList, setShowList] = useState(true)
+  const buttonText = showList ? 'close' : 'open'
   return (
     <div className={styles.container}>
-      <h2>{props.categoryName}</h2>
-      <div className={styles.listContainer}>
-        {React.Children.toArray(
-          props.serviceList.map((service) => {
-            return (
-              <div>
+      <div className={styles.category}>
+        <h2>{props.categoryName}</h2>
+        <button onClick={() => setShowList(!showList)}>{buttonText}</button>
+      </div>
+      {showList && (
+        <div className={styles.listContainer}>
+          {React.Children.toArray(
+            props.serviceList.map((service) => {
+              return (
                 <ServiceLine
                   service={service}
                   handleServiceChange={props.handleServiceChange}
                 />
-              </div>
-            )
-          })
-        )}
-      </div>
-      {/* <div>{JSON.stringify(category)}</div> */}
+              )
+            })
+          )}
+        </div>
+      )}
     </div>
   )
 }

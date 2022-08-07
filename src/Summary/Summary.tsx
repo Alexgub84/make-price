@@ -1,5 +1,6 @@
 import React from 'react'
 import { Settings, CategoryList } from '../types'
+import styles from './summary.module.scss'
 export const Summary: React.FC<{ settings: Settings; list: CategoryList }> = (
   props
 ) => {
@@ -23,29 +24,30 @@ export const Summary: React.FC<{ settings: Settings; list: CategoryList }> = (
   return (
     <div>
       <h1>Summary</h1>
-      {summaryList.map((category) => {
-        return (
-          <div>
+      <div className={styles.summaryList}>
+        {summaryList.map((category) => {
+          return (
             <div>
               <h3>{category.name}</h3>
-              <div></div>
+              {React.Children.toArray(
+                category.list.map((service) => {
+                  if (service.isChecked && service.points > 0) {
+                    return (
+                      <div>
+                        <label>{service.title}: </label>
+                        <label>{service.points * pointPrice}₪</label>
+                      </div>
+                    )
+                  }
+                })
+              )}
             </div>
-            {React.Children.toArray(
-              category.list.map((service) => {
-                if (service.isChecked && service.points > 0) {
-                  return (
-                    <div>
-                      <label>{service.title}: </label>
-                      <label>{service.points * pointPrice}₪</label>
-                    </div>
-                  )
-                }
-              })
-            )}
-          </div>
-        )
-      })}
-      The total price is:{totalPrice * pointPrice}₪
+          )
+        })}
+      </div>
+      <div className={styles.totalPrice}>
+        The total price is: {totalPrice * pointPrice}₪
+      </div>
     </div>
   )
 }

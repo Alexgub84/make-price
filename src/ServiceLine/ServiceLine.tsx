@@ -35,24 +35,26 @@ export const ServiceLine: React.FC<{
   return (
     <div className={styles.container}>
       <label>{props.service.title}</label>
-      <input
-        type="checkbox"
-        checked={service.isChecked}
-        name="isChecked"
-        id=""
-        onChange={(e) => {
-          handleInputChange(e.currentTarget.name, e.currentTarget.checked)
-        }}
-      />
-      <input
-        type="number"
-        value={service.points}
-        name="points"
-        className={styles.pointsInput}
-        onChange={(e) => {
-          handleInputChange(e.currentTarget.name, parseInt(e.target.value))
-        }}
-      />
+      <div>
+        <input
+          type="checkbox"
+          checked={service.isChecked}
+          name="isChecked"
+          id=""
+          onChange={(e) => {
+            handleInputChange(e.currentTarget.name, e.currentTarget.checked)
+          }}
+        />
+        <input
+          type="number"
+          value={service.points}
+          name="points"
+          className={styles.pointsInput}
+          onChange={(e) => {
+            handleInputChange(e.currentTarget.name, parseInt(e.target.value))
+          }}
+        />
+      </div>
     </div>
   )
 }

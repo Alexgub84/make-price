@@ -1,5 +1,5 @@
 .container {
-  width: 400px;
+  min-width: 300px;
 }
 
 .listContainer {
@@ -8,5 +8,16 @@
   align-items: center;
   & > * {
     padding-bottom: 10px;
+  }
+}
+
+.category {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  button {
+    width: 60px;
+    height: 20px;
   }
 }

@@ -1,5 +1,6 @@
 import { CategoryList } from '../types'
-import { v4 as uuidv4 } from 'uuid'
+// import { v4 as uuidv4 } from 'uuid'
+const { v4: uuidv4 } = require('uuid')
 export const categoryList: CategoryList = [
   {
     name: 'Preparing some',
@@ -65,7 +66,7 @@ export const categoryList: CategoryList = [
       },
       {
         id: uuidv4(),
-        title: "The sky isn't you limit",
+        title: "The sky isn't your limit",
         isChecked: false,
         points: 0,
       },
