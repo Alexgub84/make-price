@@ -6,7 +6,7 @@ function App() {
   return (
     <div className="App">
       <header className={styles.header}>
-        <h1> Welcome to Make Price for Shir app</h1>
+        <h1> Make Price for Shir</h1>
       </header>
       <Home />
     </div>

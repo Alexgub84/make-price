@@ -1,3 +1,10 @@
+.container {
+  font-size: 20px;
+  width: 595px;
+  height: 842px;
+  background-color: red;
+}
+
 .summaryList {
   display: flex;
   flex-direction: column;
@@ -8,5 +15,3 @@
   border: 1px solid;
   padding: 10px;
 }
-
-

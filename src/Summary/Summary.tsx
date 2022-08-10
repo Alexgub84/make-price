@@ -1,5 +1,6 @@
-import React from 'react'
+import React, { FC } from 'react'
 import { Settings, CategoryList } from '../types'
+import { PdfExporter } from './PdfExporter/PdfExporter'
 import styles from './summary.module.scss'
 export const Summary: React.FC<{ settings: Settings; list: CategoryList }> = (
   props
@@ -20,34 +21,76 @@ export const Summary: React.FC<{ settings: Settings; list: CategoryList }> = (
       }
     })
   })
-
-  return (
+  // const SummaryComp: FC<{ styles: typeof styles }> = (): React.ReactElement => (
+  const SummaryComp: FC = (): React.ReactElement => (
     <div>
       <h1>Summary</h1>
       <div className={styles.summaryList}>
-        {summaryList.map((category) => {
-          return (
-            <div>
-              <h3>{category.name}</h3>
-              {React.Children.toArray(
-                category.list.map((service) => {
-                  if (service.isChecked && service.points > 0) {
-                    return (
-                      <div>
-                        <label>{service.title}: </label>
-                        <label>{service.points * pointPrice}₪</label>
-                      </div>
-                    )
-                  }
-                })
-              )}
-            </div>
-          )
-        })}
+        {React.Children.toArray(
+          summaryList.map((category) => {
+            return (
+              <div>
+                <h3>{category.name}</h3>
+                {React.Children.toArray(
+                  category.list.map((service) => {
+                    if (service.isChecked && service.points > 0) {
+                      return (
+                        <div>
+                          <label>{service.title}: </label>
+                          <label>{service.points * pointPrice}₪</label>
+                        </div>
+                      )
+                    } else {
+                      return
+                    }
+                  })
+                )}
+              </div>
+            )
+          })
+        )}
       </div>
       <div className={styles.totalPrice}>
         The total price is: {totalPrice * pointPrice}₪
       </div>
+    </div>
+  )
+  const SummaryCompForPdf: FC = (): React.ReactElement => {
+    return <SummaryComp />
+  }
+  return (
+    <div className={styles.container}>
+      <h1>Summary</h1>
+      <div className={styles.summaryList}>
+        {React.Children.toArray(
+          summaryList.map((category) => {
+            return (
+              <div>
+                <h3>{category.name}</h3>
+                {React.Children.toArray(
+                  category.list.map((service) => {
+                    if (service.isChecked && service.points > 0) {
+                      return (
+                        <div>
+                          <label>{service.title}: </label>
+                          <label>{service.points * pointPrice}₪</label>
+                        </div>
+                      )
+                    } else {
+                      return
+                    }
+                  })
+                )}
+              </div>
+            )
+          })
+        )}
+      </div>
+      <div className={styles.totalPrice}>
+        The total price is: {totalPrice * pointPrice}₪
+      </div>
+      <SummaryComp />
+      <PdfExporter component={<SummaryComp />} />
     </div>
   )
 }
