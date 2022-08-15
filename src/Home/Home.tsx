@@ -1,16 +1,30 @@
 import React, { useState } from 'react'
 import styles from './home.module.scss'
 import { ServicesList } from '../ServiceList/ServiceList'
-import { Service, ServiceList, Settings, HandleServiceChange } from '../types'
+import {
+  Service,
+  ServiceList,
+  Settings,
+  HandleServiceChange,
+  ClientDetails,
+  HandleSettingsChange,
+} from '../types'
 import { Summary } from '../Summary/Summary'
 import { categoryList } from '../data/category-list'
+import { SettingsComp } from '../Settings/Settings'
 
 export function Home() {
-  const settings: Settings = {
+  const settingsData: Settings = {
     pointPrice: 20,
+    imgUrl: 'http://www.sample.com',
+  }
+
+  const clientDetails: ClientDetails = {
+    name: 'name',
   }
 
   const [list, setList] = useState(categoryList)
+  const [settings, setSettings] = useState(settingsData)
 
   const handleServiceChange: HandleServiceChange = (updatedService): void => {
     const updatedList = list.map((category) => {
@@ -21,6 +35,12 @@ export function Home() {
       return { name: category.name, list: updatedServiceList }
     })
     setList(updatedList)
+  }
+
+  const handleSettingsChange: HandleSettingsChange = (
+    updatedSettings
+  ): void => {
+    setSettings({ ...updatedSettings })
   }
 
   const updateServiceList = (
@@ -50,7 +70,7 @@ export function Home() {
           )
         })
       )}
-
+      <SettingsComp settings={settings} />
       <Summary settings={settings} list={list} />
     </div>
   )

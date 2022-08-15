@@ -22,7 +22,14 @@ export type HandleServiceChange = (
 ) => void
 
 export type HandleListChange = (name: string, newlist: ServiceList) => void
+// export type HandleSettingChange = (updatedSetting: Record<K extends  string | number | symbol, T>={[P in K]: T}) => void
+export type HandleSettingsChange = (updatedSettings: Settings) => void
 
 export type Settings = {
   pointPrice: number
+  imgUrl: string
+}
+
+export type ClientDetails = {
+  name: string
 }
