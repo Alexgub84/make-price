@@ -1,4 +1,6 @@
 import React, { FC } from 'react'
+import { dateToday } from '../service/utils'
+import { SettingsComp } from '../Settings/Settings'
 import { Settings, CategoryList } from '../types'
 import { PdfExporter } from './PdfExporter/PdfExporter'
 import styles from './summary.module.scss'
@@ -23,8 +25,41 @@ export const Summary: React.FC<{ settings: Settings; list: CategoryList }> = (
   })
   // const SummaryComp: FC<{ styles: typeof styles }> = (): React.ReactElement => (
   const SummaryComp: FC = (): React.ReactElement => (
-    <div>
-      <h1>Summary</h1>
+    <div className={styles.container}>
+      <header>
+        <img src="bla" alt="bla" />
+        <div className={styles.for}>
+          <div>
+            <span>for</span>
+            <span>settings.client.name</span>
+          </div>
+          <div>
+            <span>date</span>
+            <span>{dateToday()}</span>
+          </div>
+        </div>
+      </header>
+      <body>
+        <h1>
+          <span>הצעת מחיר בניית אתר</span>
+          <span>settings.client.name</span>
+        </h1>
+        <section>
+          <h2>תיאור הפרויקט</h2>
+          <div>settings.client.description</div>
+        </section>
+
+        <section>
+          <h3>תכולת האתר</h3>
+          <h4>עמודים ראשיים</h4>
+          <ul>
+            <li>עמוד ראשי</li>
+            <li>עמוד ראשי</li>
+            <li>עמוד ראשי</li>
+            <li>עמוד ראשי</li>
+          </ul>
+        </section>
+      </body>
       <div className={styles.summaryList}>
         {React.Children.toArray(
           summaryList.map((category) => {
@@ -60,36 +95,8 @@ export const Summary: React.FC<{ settings: Settings; list: CategoryList }> = (
   }
   return (
     <div className={styles.container}>
-      <h1>Summary</h1>
-      <div className={styles.summaryList}>
-        {React.Children.toArray(
-          summaryList.map((category) => {
-            return (
-              <div>
-                <h3>{category.name}</h3>
-                {React.Children.toArray(
-                  category.list.map((service) => {
-                    if (service.isChecked && service.points > 0) {
-                      return (
-                        <div>
-                          <label>{service.title}: </label>
-                          <label>{service.points * pointPrice}₪</label>
-                        </div>
-                      )
-                    } else {
-                      return
-                    }
-                  })
-                )}
-              </div>
-            )
-          })
-        )}
-      </div>
-      <div className={styles.totalPrice}>
-        The total price is: {totalPrice * pointPrice}₪
-      </div>
       <SummaryComp />
+      <SettingsComp settings={props.settings} />
       <PdfExporter component={<SummaryComp />} />
     </div>
   )
