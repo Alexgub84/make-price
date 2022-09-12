@@ -1,12 +1,7 @@
 import React, { useState } from 'react'
 import styles from './serviceList.module.scss'
 import { ServiceLine } from '../ServiceLine/ServiceLine'
-import {
-  HandleServiceChange,
-  Category,
-  ServiceList,
-  HandleListChange,
-} from '../types'
+import { HandleServiceChange, ServiceList } from '../types'
 
 export const ServicesList: React.FC<{
   categoryName: string

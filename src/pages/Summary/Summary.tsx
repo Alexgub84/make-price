@@ -1,7 +1,7 @@
 import React, { FC } from 'react'
-import { dateToday } from '../service/utils'
+import { dateToday } from '../../services/utils'
 import { SettingsComp } from '../Settings/Settings'
-import { Settings, CategoryList } from '../types'
+import { Settings, CategoryList } from '../../types'
 import { PdfExporter } from './PdfExporter/PdfExporter'
 import styles from './summary.module.scss'
 export const Summary: React.FC<{ settings: Settings; list: CategoryList }> = (
@@ -39,7 +39,7 @@ export const Summary: React.FC<{ settings: Settings; list: CategoryList }> = (
           </div>
         </div>
       </header>
-      <body>
+      <div>
         <h1>
           <span>הצעת מחיר בניית אתר</span>
           <span>settings.client.name</span>
@@ -59,7 +59,7 @@ export const Summary: React.FC<{ settings: Settings; list: CategoryList }> = (
             <li>עמוד ראשי</li>
           </ul>
         </section>
-      </body>
+      </div>
       <div className={styles.summaryList}>
         {React.Children.toArray(
           summaryList.map((category) => {

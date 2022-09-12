@@ -38,7 +38,7 @@ export const categoryList: CategoryList = [
     ],
   },
   {
-    name: 'Pages',
+    name: 'Special Pages',
     list: [
       {
         id: uuidv4(),

@@ -1,8 +1,16 @@
+import { type } from 'os'
 import { useState } from 'react'
-import { Settings } from '../types'
+import { Settings } from '../../types'
 import styles from './settings.module.scss'
 export const SettingsComp: React.FC<{ settings: Settings }> = (props) => {
   const [isShown, setIsShown] = useState(false)
+  const [pointPrice, setPointPrice] = useState(props.settings.pointPrice)
+
+  const onValueChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (typeof e.currentTarget.value === 'number')
+      setPointPrice(e.currentTarget.value)
+    console.log('input changed')
+  }
   const buttonText = isShown ? 'hide' : 'show'
   return (
     <div>
@@ -12,7 +20,8 @@ export const SettingsComp: React.FC<{ settings: Settings }> = (props) => {
         <input
           type="number"
           id="pointPrice"
-          value={props.settings.pointPrice}
+          defaultValue={pointPrice}
+          onChange={onValueChange}
         />
       </div>
       <section>
