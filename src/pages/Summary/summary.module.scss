@@ -1,7 +1,18 @@
 .container {
   font-size: 20px;
-  width: 595px;
-  height: 842px;
+
+  padding: 20px;  
+}
+
+header{
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 20px; 
+
+  img{
+    width: 40px;
+    aspect-ratio: 1/1;
+  }
 }
 
 .summaryList {

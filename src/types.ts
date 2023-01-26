@@ -2,12 +2,14 @@ export type Service = {
   id: string
   title: string
   isChecked: boolean
+  shouldBeDisplayed: boolean
   points: number
 }
 
 export type ServiceList = Service[]
 
 export type Category = {
+  id: string
   name: string
   list: ServiceList
 }

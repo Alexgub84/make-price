@@ -1,15 +1,14 @@
-import React, { useState } from 'react'
+import React, {useState} from 'react'
 import styles from './serviceList.module.scss'
-import { ServiceLine } from '../ServiceLine/ServiceLine'
-import { HandleServiceChange, ServiceList } from '../types'
-
+import {ServiceLine} from '../ServiceLine/ServiceLine'
+import type {HandleServiceChange, ServiceList} from '../types'
 export const ServicesList: React.FC<{
   categoryName: string
   serviceList: ServiceList
   handleServiceChange: HandleServiceChange
 }> = (props) => {
   const [showList, setShowList] = useState(true)
-  const buttonText = showList ? 'close' : 'open'
+  const buttonText = showList ? 'לסגור' : 'לפתוח'
   return (
     <div className={styles.container}>
       <div className={styles.category}>
@@ -18,16 +17,15 @@ export const ServicesList: React.FC<{
       </div>
       {showList && (
         <div className={styles.listContainer}>
-          {React.Children.toArray(
-            props.serviceList.map((service) => {
-              return (
-                <ServiceLine
-                  service={service}
-                  handleServiceChange={props.handleServiceChange}
-                />
-              )
-            })
-          )}
+          {props.serviceList.map((service, ii) => {
+            return (
+              <ServiceLine
+                service={service}
+                handleServiceChange={props.handleServiceChange}
+                key={`service-${service.id}`}
+              />
+            )
+          })}
         </div>
       )}
     </div>

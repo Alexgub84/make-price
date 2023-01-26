@@ -1,4 +1,4 @@
-import { type } from 'os'
+
 import { useState } from 'react'
 import { Settings } from '../../types'
 import styles from './settings.module.scss'

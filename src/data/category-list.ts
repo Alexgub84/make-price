@@ -1,145 +1,117 @@
-import { CategoryList } from '../types'
+import type {CategoryList} from '../types'
+
 // import { v4 as uuidv4 } from 'uuid'
-const { v4: uuidv4 } = require('uuid')
+const {v4: uuidv4} = require('uuid')
 export const categoryList: CategoryList = [
   {
-    name: 'Basic',
+    name: 'בסיס',
+    id: uuidv4(),
+
     list: [
       {
         id: uuidv4(),
-        title: 'Do this',
-        isChecked: false,
-        points: 0,
+        title: 'התקנת וורדפרס, תבנית והגדרות',
+        isChecked: true,
+        points: 3,
+        shouldBeDisplayed: false,
       },
       {
         id: uuidv4(),
-        title: 'Write this',
-        isChecked: false,
-        points: 0,
+        title: 'גביה ותוספות',
+        isChecked: true,
+        points: 3,
+        shouldBeDisplayed: false,
       },
       {
         id: uuidv4(),
-        title: 'Design that',
-        isChecked: false,
+        title: 'הדר + פוטר',
+        isChecked: true,
         points: 0,
+        shouldBeDisplayed: false,
       },
       {
         id: uuidv4(),
-        title: 'Think about it',
-        isChecked: false,
-        points: 0,
+        title: 'עמוד ראשי 5 אזורים',
+        isChecked: true,
+        points: 4,
+        shouldBeDisplayed: true,
       },
       {
         id: uuidv4(),
-        title: 'Get some inspiration',
+        title: 'עמוד אודות',
+        isChecked: true,
+        points: 2,
+        shouldBeDisplayed: true,
+      },
+      {
+        id: uuidv4(),
+        title: 'יצירת קשר',
+        isChecked: true,
+        points: 2,
+        shouldBeDisplayed: true,
+      },
+      {
+        id: uuidv4(),
+        title: 'עמוד שירותים',
         isChecked: false,
-        points: 0,
+        points: 3,
+        shouldBeDisplayed: true,
+      },
+      {
+        id: uuidv4(),
+        title: 'בלוג',
+        isChecked: false,
+        points: 2,
+        shouldBeDisplayed: true,
       },
     ],
   },
   {
-    name: 'Special Pages',
+    name: 'עמודים מיוחדים',
+    id: uuidv4(),
     list: [
       {
         id: uuidv4(),
-        title: 'Home page',
+        title: 'עמוד הבית',
         isChecked: false,
         points: 0,
-      },
-      {
-        id: uuidv4(),
-        title: 'Write this',
-        isChecked: false,
-        points: 0,
-      },
-      {
-        id: uuidv4(),
-        title: 'Page 1',
-        isChecked: false,
-        points: 0,
-      },
-      {
-        id: uuidv4(),
-        title: 'Page 2',
-        isChecked: false,
-        points: 0,
-      },
-      {
-        id: uuidv4(),
-        title: 'About',
-        isChecked: false,
-        points: 0,
-      },
+        shouldBeDisplayed: false,
+      }
     ],
   },
   {
-    name: 'Flying away',
+    name: 'תוספות נוספות',
+    id: uuidv4(),
     list: [
       {
         id: uuidv4(),
-        title: 'Make magic',
+        title: 'טופס השארת פרטים בכל עמוד, חיבור וואטצפ, מייל',
         isChecked: false,
         points: 0,
+        shouldBeDisplayed: false,
       },
       {
         id: uuidv4(),
-        title: 'Bring your passion',
+        title: 'עמוד שגיאה 404',
         isChecked: false,
         points: 0,
+        shouldBeDisplayed: false,
       },
       {
         id: uuidv4(),
-        title: 'Unleash yourself',
+        title: 'חיבור לגוגל אנליטיקס',
         isChecked: false,
         points: 0,
+        shouldBeDisplayed: false,
       },
       {
         id: uuidv4(),
-        title: "You're the best there are",
+        title: "חיבור לרשתות החברתיות",
         isChecked: false,
         points: 0,
+        shouldBeDisplayed: false,
       },
-      {
-        id: uuidv4(),
-        title: "The sky isn't your limit",
-        isChecked: false,
-        points: 0,
-      },
+     
     ],
-  },
-  {
-    name: 'Flying away',
-    list: [
-      {
-        id: uuidv4(),
-        title: 'Make magic',
-        isChecked: false,
-        points: 0,
-      },
-      {
-        id: uuidv4(),
-        title: 'Bring your passion',
-        isChecked: false,
-        points: 0,
-      },
-      {
-        id: uuidv4(),
-        title: 'Unleash yourself',
-        isChecked: false,
-        points: 0,
-      },
-      {
-        id: uuidv4(),
-        title: "You're the best there are",
-        isChecked: false,
-        points: 0,
-      },
-      {
-        id: uuidv4(),
-        title: "The sky isn't your limit",
-        isChecked: false,
-        points: 0,
-      },
-    ],
-  },
+  }
 ]

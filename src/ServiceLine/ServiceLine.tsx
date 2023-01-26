@@ -1,10 +1,11 @@
 import React, { useState } from 'react'
 import styles from './serviceLine.module.scss'
-import { Service, HandleServiceChange } from '../types'
+import type { Service, HandleServiceChange } from '../types'
 
 export const ServiceLine: React.FC<{
   service: Service
   handleServiceChange: HandleServiceChange
+
 }> = (props) => {
   const [service, setService] = useState(props.service)
   const handleInputChange = (
@@ -52,6 +53,14 @@ export const ServiceLine: React.FC<{
           className={styles.pointsInput}
           onChange={(e) => {
             handleInputChange(e.currentTarget.name, parseInt(e.target.value))
+          }}
+        />
+        <input
+          type="checkbox"
+          checked={service.shouldBeDisplayed}
+          name="shouldBeDisplayed"
+          onChange={(e) => {
+            handleInputChange(e.currentTarget.name, e.currentTarget.checked)
           }}
         />
       </div>
