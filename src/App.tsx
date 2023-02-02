@@ -1,11 +1,14 @@
 import React, {useState} from 'react'
-import {categoryList} from './data/category-list'
 import styles from './app.module.scss'
+import {Routes, Route} from 'react-router-dom'
+
+import {categoryList} from './data/category-list'
 import {Questionnaire} from './pages/Questionnaire/Questionnaire'
-import {NavLink, Routes, Route} from 'react-router-dom'
 import {Summary} from './pages/Summary/Summary'
 import {Welcome} from './pages/Welcome/Welcome'
 import {SettingsComp} from './pages/Settings/Settings'
+import {NavBar} from './components/NavBar/Navbar'
+
 import {Service, ServiceList, Settings, HandleServiceChange, HandleSettingsChange} from './types'
 
 function App() {
@@ -47,22 +50,7 @@ function App() {
   return (
     <div className="App">
       <header className={styles.header}>
-        <nav className={styles.navbar}>
-          <li>
-            <NavLink to="/" end>
-              Welcome
-            </NavLink>
-          </li>
-          <li>
-            <NavLink to="/questionnaire">Make Price</NavLink>
-          </li>
-          <li>
-            <NavLink to="/summary">Summary</NavLink>
-          </li>
-          <li>
-            <NavLink to="/settings">Settings</NavLink>
-          </li>
-        </nav>
+        <NavBar />
       </header>
       <div>
         <Routes>
@@ -74,7 +62,7 @@ function App() {
                 list={list}
                 handleServiceChange={handleServiceChange}
                 handleAddService={handleAddService}
-              />  
+              />
             }
           />
           <Route path="/settings" element={<SettingsComp settings={settings} />} />

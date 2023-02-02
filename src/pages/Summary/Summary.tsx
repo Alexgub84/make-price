@@ -1,14 +1,31 @@
 import React, {FC} from 'react'
-import {dateToday} from '../../services/utils'
-import {SettingsComp} from '../Settings/Settings'
-import type {Settings, CategoryList} from '../../types'
-import {PdfExporter} from './PdfExporter/PdfExporter'
-import styles from './summary.module.scss'
-import CompanyLogo from '../../assets/imgs/quality_logo.png'
 
+import {DragDropContext, Droppable} from '@hello-pangea/dnd'
+import type {DropResult} from '@hello-pangea/dnd'
+
+import styles from './summary.module.scss'
+
+import type {Settings, CategoryList, Category} from '../../types'
+
+import {dateToday} from '../../services/utils'
+import {PdfExporter} from './PdfExporter/PdfExporter'
+import CompanyLogo from '../../assets/imgs/quality_logo.png'
+import {SummaryPartialComponent} from './SummaryPartialComponent'
 import {settings as fakeSettings} from '../../data/settings.js'
 
 export const Summary: React.FC<{settings: Settings; list: CategoryList}> = (props) => {
+  const [currentList, setCurrentList] = React.useState<CategoryList>(props.list)
+
+  const handleDragEnd = (result: DropResult) => {
+    if (!result.destination) return
+
+    const reorderedList = [...currentList]
+    const [reorderedItem] = reorderedList.splice(result.source.index, 1)
+    reorderedList.splice(result.destination.index, 0, reorderedItem)
+
+    setCurrentList(reorderedList)
+  }
+
   const summaryList = props.list.filter((category) => {
     const isCategory = category.list.find((row) => {
       return row.isChecked
@@ -55,31 +72,37 @@ export const Summary: React.FC<{settings: Settings; list: CategoryList}> = (prop
 
         <section>
           <h3>תכולת האתר</h3>
-          {props.list.map((category) => {
-            return (
-              <section key={`summary-${category.id}`}>
-                <h4>{category.name}</h4>
-                <ul>
-                  {category.list.map((service) => {
-                    if (service.isChecked && service.shouldBeDisplayed) {
-                      return <li key={`summary-${service.id}`}>{service.title}</li>
-                    } else {
-                      return null
-                    }
+          <DragDropContext onDragEnd={handleDragEnd}>
+            <Droppable droppableId="droppable">
+              {(provided) => (
+                <div
+                  ref={provided.innerRef}
+                  {...provided.droppableProps}
+                  className={styles.summaryList}>
+                  {currentList.map((category, ii) => {
+                    return (
+                      <SummaryPartialComponent
+                        key={`summary-${category.id}`}
+                        category={category}
+                        index={ii}
+                      />
+                    )
                   })}
-                </ul>
-              </section>
-            )
-          })}
+                  {provided.placeholder}
+                </div>
+              )}
+            </Droppable>
+          </DragDropContext>
         </section>
       </div>
 
-      <div className={styles.totalPrice}>The total price is: {totalPrice * pointPrice}₪</div>
+      <div className={styles.totalPrice}>
+        <span>הסכום הסופי לתשלום הוא: </span>
+        <span>{totalPrice * pointPrice}₪</span>
+      </div>
     </div>
   )
-  const SummaryCompForPdf: FC = (): React.ReactElement => {
-    return <SummaryComp />
-  }
+
   return (
     <div className={styles.container}>
       <SummaryComp />

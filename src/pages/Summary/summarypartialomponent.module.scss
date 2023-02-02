@@ -1,0 +1,8 @@
+.container{
+    box-sizing: border-box;
+
+    cursor: grab;
+    &:hover{
+        outline: solid 1px black;
+    }
+}

@@ -1,18 +1,14 @@
-import React, { useState } from 'react'
+import React, {useState} from 'react'
 import styles from './serviceLine.module.scss'
-import type { Service, HandleServiceChange } from '../types'
+import type {Service, HandleServiceChange} from '../types'
 
 export const ServiceLine: React.FC<{
   service: Service
   handleServiceChange: HandleServiceChange
-
 }> = (props) => {
   const [service, setService] = useState(props.service)
-  const handleInputChange = (
-    keyName: string,
-    newValue: boolean | number
-  ): void => {
-    const updatedService = { ...service }
+  const handleInputChange = (keyName: string, newValue: boolean | number): void => {
+    const updatedService = {...service}
     switch (keyName) {
       case 'points':
         updatedService.points = newValue as number
@@ -26,10 +22,13 @@ export const ServiceLine: React.FC<{
         }
         updatedService.isChecked = newValue as boolean
         break
+      case 'shouldBeDisplayed':
+        updatedService.shouldBeDisplayed = newValue as boolean
+        break
       default:
         break
     }
-    setService((prev) => ({ ...prev, ...updatedService }))
+    setService((prev) => ({...prev, ...updatedService}))
     props.handleServiceChange(updatedService)
   }
 
@@ -41,7 +40,6 @@ export const ServiceLine: React.FC<{
           type="checkbox"
           checked={service.isChecked}
           name="isChecked"
-          id=""
           onChange={(e) => {
             handleInputChange(e.currentTarget.name, e.currentTarget.checked)
           }}

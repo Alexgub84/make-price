@@ -1,3 +1,4 @@
+
 export type Service = {
   id: string
   title: string
@@ -13,6 +14,16 @@ export type Category = {
   name: string
   list: ServiceList
 }
+
+
+
+export type CategoryWithLocation = Category & {
+  x: number
+  y: number
+}
+
+export type CategoryWithLocationList = CategoryWithLocation[]
+
 
 export type CategoryList = Category[]
 

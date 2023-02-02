@@ -1,0 +1,14 @@
+.navbar{
+    color: #fff;
+    li{
+      display: inline-block;
+      color:white;
+      padding: 10px;
+      a:active{
+        color: red;
+      }
+      a:visited{
+        color:white;
+      }
+    }
+  }
